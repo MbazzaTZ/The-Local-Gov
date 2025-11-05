@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Local Government Services Portal (DLGSP)</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/images/logo.png" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <img src="assets/images/logo.png" class="logo" alt="DLGSP Logo">
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#forms">Forms</a></li>
+          <li><a href="#payments">Payments</a></li>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HOME SECTION ===== -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Smart Councils, Empowered Citizens</h1>
+      <p>Access local government services from anywhere — simple, fast, and transparent.</p>
+      <a href="#services" class="btn-primary">Explore Services</a>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES SECTION ===== -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <div class="service-grid">
+        <div class="card">
+          <h3>🪪 Citizen Services</h3>
+          <p>Birth, marriage, death certificates, and digital IDs.</p>
+        </div>
+        <div class="card">
+          <h3>🏘️ Land & Housing</h3>
+          <p>Plot applications, ownership verification, land rent payment.</p>
+        </div>
+        <div class="card">
+          <h3>💧 Water & Sanitation</h3>
+          <p>Bill management, new connections, and issue reporting.</p>
+        </div>
+        <div class="card">
+          <h3>💼 Business Services</h3>
+          <p>Apply or renew business licenses and permits online.</p>
+        </div>
+        <div class="card">
+          <h3>🌿 Environment</h3>
+          <p>Community clean-ups, permits, and awareness programs.</p>
+        </div>
+        <div class="card">
+          <h3>👥 Community & Welfare</h3>
+          <p>Programs for youth, women, elderly, and vulnerable groups.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FORMS & CERTIFICATES ===== -->
+  <section id="forms" class="section dark">
+    <div class="container">
+      <h2 class="section-title">Forms & Certificates</h2>
+      <div class="form-wrapper">
+        <form id="certificateForm" class="form">
+          <label for="certificateType">Select Certificate</label>
+          <select id="certificateType" required>
+            <option value="Birth Certificate">Birth Certificate</option>
+            <option value="Business License">Business License</option>
+            <option value="Land Ownership">Land Ownership</option>
+            <option value="Marriage Certificate">Marriage Certificate</option>
+          </select>
+
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Enter full name" required>
+
+          <label for="nationalId">National ID / NIDA</label>
+          <input type="text" id="nationalId" placeholder="e.g., 1987654321098765" required>
+
+          <label for="address">Address</label>
+          <input type="text" id="address" placeholder="e.g., Dodoma City, Area B" required>
+
+          <button type="submit" class="btn-primary">Generate Certificate</button>
+        </form>
+
+        <div id="certificatePreview" class="certificate-preview hidden">
+          <h3 id="certTitle"></h3>
+          <p><strong>Name:</strong> <span id="certName"></span></p>
+          <p><strong>NIDA:</strong> <span id="certId"></span></p>
+          <p><strong>Address:</strong> <span id="certAddress"></span></p>
+          <p><strong>Issued Date:</strong> <span id="certDate"></span></p>
+          <button onclick="window.print()" class="btn-primary">🖨️ Print / Save PDF</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PAYMENTS SECTION ===== -->
+  <section id="payments" class="section">
+    <div class="container">
+      <h2 class="section-title">Make a Payment</h2>
+      <form id="paymentForm" class="form">
+        <label for="service">Select Service</label>
+        <select id="service">
+          <option>Business License</option>
+          <option>Property Tax</option>
+          <option>Land Rent</option>
+          <option>Water Bill</option>
+        </select>
+
+        <label for="amount">Amount (TZS)</label>
+        <input type="number" id="amount" placeholder="Enter amount" required>
+
+        <label for="method">Payment Method</label>
+        <select id="method">
+          <option>M-Pesa</option>
+          <option>Tigo Pesa</option>
+          <option>Airtel Money</option>
+          <option>CRDB Bank</option>
+          <option>NMB Bank</option>
+        </select>
+
+        <button type="submit" class="btn-primary">Generate e-Receipt</button>
+        <p id="receiptMsg" class="receipt"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== DASHBOARD SECTION ===== -->
+  <section id="dashboard" class="section dark">
+    <div class="container">
+      <h2 class="section-title">Council Dashboard</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Registered Citizens</h3>
+          <p id="citizens-count">12,450</p>
+        </div>
+        <div class="stat-card">
+          <h3>Services Processed</h3>
+          <p id="services-count">3,250</p>
+        </div>
+        <div class="stat-card">
+          <h3>Revenue Collected</h3>
+          <p id="revenue">TZS 1.8B</p>
+        </div>
+      </div>
+      <canvas id="revenueChart" width="400" height="200"></canvas>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title">Contact Us</h2>
+      <form id="contactForm" class="form">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" rows="4" placeholder="Your Message"></textarea>
+        <button type="submit" class="btn-primary">Send Message</button>
+        <p id="contactMsg" class="receipt"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 Tanzania Smart Utilities | Digital Local Government Services Portal</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
